@@ -11,5 +11,6 @@ public class Client extends JFrame  {
 	public static void main(String[] args) {
 		System.out.println("coucou toi^^");
 		System.out.println("ça va ?^^");
+		System.out.println("ouais et toi ?^^");
 	}
 }
