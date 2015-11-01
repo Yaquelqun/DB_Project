@@ -5,6 +5,7 @@ import java.io.* ;
 public class Client extends JFrame  {
 
 	LoginIHM loginPage;
+	static Interpreteur sqlback;
 	InscriptionIHM inscriptionPage;
 	AbonnementChoiceIHM abonnementPage;
 	
@@ -36,5 +37,6 @@ public class Client extends JFrame  {
 		System.out.println("ouais et toi ?^^");
 		System.out.println("top délire ?^^");
 		Client client = new Client();
+		sqlback = new Interpreteur();
 	}
 }
