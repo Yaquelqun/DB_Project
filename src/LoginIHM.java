@@ -40,7 +40,7 @@ public class LoginIHM extends JPanel implements ActionListener {
 		}
 		if(s == signInButton){
 			System.out.println("changement de panneau");
-//TODO ajouter les nouveaux panels (appel fonction du client)
+			client.pageInscription();
 		}
 	}
 
