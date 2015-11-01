@@ -4,8 +4,16 @@ import java.io.* ;
 
 public class Client extends JFrame  {
 
+	LoginIHM loginPage;
+	
 	public Client() {
-		
+		//IHM
+		loginPage = new LoginIHM(this);
+		setContentPane(loginPage);
+		//affichage interface
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		pack();
+		setVisible(true);
 	}
 	
 	public static void main(String[] args) {
@@ -13,5 +21,6 @@ public class Client extends JFrame  {
 		System.out.println("ça va ?^^");
 		System.out.println("ouais et toi ?^^");
 		System.out.println("top délire ?^^");
+		Client client = new Client();
 	}
 }
