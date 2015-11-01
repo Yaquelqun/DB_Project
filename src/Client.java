@@ -5,6 +5,7 @@ import java.io.* ;
 public class Client extends JFrame  {
 
 	LoginIHM loginPage;
+	InscriptionIHM inscriptionPage;
 	
 	public Client() {
 		//IHM
@@ -14,6 +15,12 @@ public class Client extends JFrame  {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 		setVisible(true);
+	}
+	
+	public void pageInscription(){
+		inscriptionPage = new InscriptionIHM(this);
+		setContentPane(inscriptionPage);
+		pack();
 	}
 	
 	public static void main(String[] args) {
