@@ -37,6 +37,12 @@ public class LoginIHM extends JPanel implements ActionListener {
 			psw = pswEnter.getText();
 			System.out.println(login + " " + psw + " connexion..."); 
 //TODO comparer à la base de données et connexion done ou pas
+			try {
+				client.sqlback.checkLogin(login, psw);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		if(s == signInButton){
 			System.out.println("changement de panneau");
