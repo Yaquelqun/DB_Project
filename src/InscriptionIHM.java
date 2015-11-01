@@ -7,6 +7,7 @@ public class InscriptionIHM extends JPanel implements ActionListener {
 	private Client client;
 	private JButton OKButton;
 	private JTextField nomEnter, mailEnter, loginEnter, psw1Enter, psw2Enter;
+	//TODO passer les psw en private ou protected et faire les fonctions de récup des données en sécurisé
 	private String login, psw1, psw2, nom, mail;
 	Dimension fenSize = new Dimension(300,200);
 	
@@ -42,13 +43,12 @@ public class InscriptionIHM extends JPanel implements ActionListener {
 			psw1 = psw1Enter.getText();
 			psw2 = psw2Enter.getText();
 			if(psw1.equals(psw2)){
-				//TODO changement de panel via fonction main et création de compte main?
-				System.out.println(login + " " + psw1 + " creation de compte..."); 
+				this.client.pageAbonnement();
+				System.out.println(login + " " + psw1 + " choix abonnement..."); 
 			}
 			else{
 				System.out.println("mots de passe différents"); 
 			}
-//TODO comparer à la base de données et connexion done ou pas
 		}
 	}
 }
