@@ -1,6 +1,8 @@
 import java.sql.*;
 import java.util.Vector;
 
+import Data.Sub;
+
 public class Interpreteur {
 
 	Connection connec = null;
@@ -65,10 +67,10 @@ public class Interpreteur {
 		return false ;
 	}
 
-	public Vector<String> getSubs() {
-		requete = "SELECT subname FROM sub";
+	public Vector<Sub> getSubs() {
+		requete = "SELECT * FROM sub";
 		System.out.println(requete);
-		Vector<String> sublist = new Vector<String>();
+		Vector<Sub> sublist = new Vector<Sub>();
 		try {
 			state = connec.createStatement();
 			res = state.executeQuery(requete);
@@ -81,8 +83,14 @@ public class Interpreteur {
 		System.out.println("parcours des donn�es retourn�es");
 		try {
 			while (res.next()) {
-				String result = res.getString(1);
-				sublist.add(result);
+				Sub tmp = new Sub();
+				tmp.setSubName(res.getString(1));
+				tmp.setTotSize(res.getInt(2));
+				tmp.setMachineMax(res.getInt(3));
+				tmp.setSharedFolderMax(res.getInt(4));
+				tmp.setShareUserMax(res.getInt(5));
+				tmp.setSubPrice(res.getInt(6));
+				sublist.add(tmp);
 			}
 			
 		} catch (SQLException e) {
