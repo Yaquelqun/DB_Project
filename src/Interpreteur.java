@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.Vector;
 
 public class Interpreteur {
 
@@ -62,5 +63,31 @@ public class Interpreteur {
 			arret(e.getMessage());
 		}		
 		return false ;
+	}
+
+	public Vector<String> getSubs() {
+		requete = "SELECT subname FROM sub";
+		System.out.println(requete);
+		Vector<String> sublist = new Vector<String>();
+		try {
+			state = connec.createStatement();
+			res = state.executeQuery(requete);
+		} catch (SQLException e) {
+			System.out.println("probleme requete");
+			return null;
+		}
+
+		//parcours des donn�es retourn�es
+		System.out.println("parcours des donn�es retourn�es");
+		try {
+			while (res.next()) {
+				String result = res.getString(1);
+				sublist.add(result);
+			}
+			
+		} catch (SQLException e) {
+			arret(e.getMessage());
+		}		
+		return sublist;
 	}
 }
