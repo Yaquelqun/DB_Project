@@ -25,7 +25,7 @@ public class InscriptionIHM extends JPanel implements ActionListener {
 //TODO mettre les psw en caché
 		psw1Enter = new JTextField("Votre mot de passe",20);
 		this.add(psw1Enter);
-		psw2Enter = new JTextField("Confirmer votre mot de passe",20);
+		psw2Enter = new JTextField("Votre mot de passe",20);
 		this.add(psw2Enter);
 		OKButton = new JButton("Se connecter");
 		OKButton.addActionListener(this);

@@ -1,6 +1,7 @@
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -12,6 +13,7 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 	private JButton OKButton;
 	private JList<String> subList;
 	private String subChoice;
+	private Vector<String> availableSubs;
 	Dimension fenSize = new Dimension(300,200);
 	
 	public AbonnementChoiceIHM(Client client){
@@ -19,7 +21,14 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 		this.client.setPreferredSize(fenSize);
 		this.setPreferredSize(fenSize);
 //TODO ajouter une image au login
-		subList = new JList<String>();
+
+		availableSubs = client.sqlback.getSubs();
+		for( int i=0; i< availableSubs.size(); i++)
+		{
+			System.out.println(availableSubs.get(i));
+		}
+
+		subList = new JList<String>(availableSubs);
 		this.add(subList);
 		OKButton = new JButton("OK");
 		OKButton.addActionListener(this);
