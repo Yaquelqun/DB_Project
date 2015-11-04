@@ -68,6 +68,7 @@ public class Interpreteur {
 	}
 
 	public Vector<Sub> getSubs() {
+
 		requete = "SELECT * FROM sub";
 		System.out.println(requete);
 		Vector<Sub> sublist = new Vector<Sub>();
@@ -97,5 +98,26 @@ public class Interpreteur {
 			arret(e.getMessage());
 		}		
 		return sublist;
+	}
+
+	public boolean UserCheck(String mail)
+	{
+		requete = ("SELECT * FROM utilisateur where mail ='"+mail+"'");
+		Vector<Sub> sublist = new Vector<Sub>();
+		try {
+			state = connec.createStatement();
+			res = state.executeQuery(requete);
+		} catch (SQLException e) {
+			System.out.println("probleme requete");
+			return false;
+		}
+
+		try {
+			if(res.next() == false) return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

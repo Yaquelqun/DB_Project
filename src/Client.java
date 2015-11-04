@@ -1,10 +1,12 @@
 import java.net.* ;
 import javax.swing.*;
 import java.io.* ; 
+import Data.Sub;
 
 public class Client extends JFrame  {
 
 	static Interpreteur sqlback;
+	public Sub subChoice;
 	
 	
 	public Client() {
@@ -32,6 +34,12 @@ public class Client extends JFrame  {
 	public void pageMdp(){
 		MoyenPaiementIHM mdpPage = new MoyenPaiementIHM(this);
 		setContentPane(mdpPage);
+		pack();
+	}
+	
+	public void pageCorpSub(){
+		CorporateSubIHM corpSubPage = new CorporateSubIHM(this);
+		setContentPane(corpSubPage);
 		pack();
 	}
 	
