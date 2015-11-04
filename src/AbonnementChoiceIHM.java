@@ -7,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import Data.Sub;
 
@@ -32,6 +34,23 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 		}
 
 		subList = new JList<String>(names);
+		subList.addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (e.getValueIsAdjusting() == false) {
+
+			        if (subList.getSelectedIndex() == -1) {
+
+			        } else {
+			        	if(subList.getSelectedValue().equals("corporate")){
+			        		System.out.println("wololo");
+			        	}
+			        }
+			    }
+				
+			}
+		});
 		this.add(subList);
 		OKButton = new JButton("OK");
 		OKButton.addActionListener(this);
