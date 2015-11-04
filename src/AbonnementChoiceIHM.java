@@ -42,11 +42,17 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent evnt) {
 		Object s = evnt.getSource();
 		if(s == OKButton){
-//TODO enregistrement de l'abonnement choisi
+// enregistrement de l'abonnement choisi
 			subChoice = subList.getSelectedValue();
+//TODO récupérer les carac de l'abonnement choisi pour l'enregistrer dans un objet sub
 			System.out.println(subChoice + " connexion..."); 
-//TODO création de compte main et changement de panel via fonction main 
+//TODO affichage de la derniere page (choix moyen de paiement + si entreprise enregistrement)
+			if(subChoice.equals("Corporate")){
+				System.out.println(subChoice + " connexion..."); 
+			}
+			else{
+				client.pageMdp();
+			}
 		}
-
 	}
 }
