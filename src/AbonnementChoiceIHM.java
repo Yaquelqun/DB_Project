@@ -7,15 +7,21 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionListener;
+import com.sun.corba.se.impl.naming.pcosnaming.NameServer;
 
 import Data.Sub;
 
 public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 	private Client client;
 	private JButton OKButton;
+	private JTextField SIRETEnter;
 	private JList<String> subList;
 	private String subChoice;
 	private Vector<Sub> availableSubs;
+	private ListSelectionListener listenerCorporate;
 	Dimension fenSize = new Dimension(300,200);
 	
 	public AbonnementChoiceIHM(Client client){
@@ -32,6 +38,27 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 		}
 
 		subList = new JList<String>(names);
+		subList.addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (e.getValueIsAdjusting() == false) {
+
+			        if (subList.getSelectedIndex() == -1) {
+
+			        } else {
+			        	if(subList.getSelectedValue().equals("corporate")){
+			        		System.out.println("wololo");
+			        		SIRETEnter = new JTextField("Siret de votre entreprise");
+							//TODO Faudrait trouver une solution pour lui faire comprendre que je parle du panel avec le this
+			        		//this.add(SIRETEnter);
+							//this.repaint();
+			        	}
+			        }
+			    }
+				
+			}
+		});
 		this.add(subList);
 		OKButton = new JButton("OK");
 		OKButton.addActionListener(this);
@@ -42,11 +69,27 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent evnt) {
 		Object s = evnt.getSource();
 		if(s == OKButton){
-//TODO enregistrement de l'abonnement choisi
+// enregistrement de l'abonnement choisi
 			subChoice = subList.getSelectedValue();
-			System.out.println(subChoice + " connexion..."); 
-//TODO création de compte main et changement de panel via fonction main 
+			int indexChoice = subList.getSelectedIndex();
+			client.subChoice = availableSubs.get(indexChoice);
+			if(subChoice.equals("Corporate")){
+				System.out.println("vérification présence entreprise..."); 
+				if(client.sqlback.verifCompany(subChoice)){
+					client.currentUser.setSIRET(SIRETEnter.getText());
+					client.pageCorpSub();
+				}
+				else{
+					client.currentUser.setSub(subChoice);
+					client.currentUser.setSIRET(SIRETEnter.getText());
+//TODO remplir la fin de User et l'enregistrer en BDD
+					client.pageMain();
+				}
+			}
+			else{
+				client.currentUser.setSub(subChoice);
+				client.pageMdp();
+			}
 		}
-
 	}
 }
