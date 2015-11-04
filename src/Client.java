@@ -2,11 +2,13 @@ import java.net.* ;
 import javax.swing.*;
 import java.io.* ; 
 import Data.Sub;
+import Data.User;
 
 public class Client extends JFrame  {
 
 	static Interpreteur sqlback;
 	public Sub subChoice;
+	public User currentUser;
 	
 	
 	public Client() {
@@ -17,6 +19,7 @@ public class Client extends JFrame  {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 		setVisible(true);
+		currentUser = new User();
 	}
 	
 	public void pageInscription(){

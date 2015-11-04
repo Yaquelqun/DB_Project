@@ -37,16 +37,17 @@ public class InscriptionIHM extends JPanel implements ActionListener {
 		Object s = evnt.getSource();
 		if(s == OKButton){
 			//enregistrement des données
-			nom = nomEnter.getText();
-			mail = mailEnter.getText();
-			login = loginEnter.getText();
+			client.currentUser.setUserName(nomEnter.getText());
+			client.currentUser.setMail(mailEnter.getText());
+			client.currentUser.setLogin(loginEnter.getText());
 			psw1 = psw1Enter.getText();
 			psw2 = psw2Enter.getText();
 			if(psw1.equals(psw2)){
 				if (Client.sqlback.UserCheck(mail))
 				{
-				this.client.pageAbonnement();
-				System.out.println(login + " " + psw1 + " choix abonnement..."); 
+					client.currentUser.setPsw(psw1);
+					this.client.pageAbonnement();
+					System.out.println(login + " " + psw1 + " choix abonnement..."); 
 				}
 				else{
 					System.out.println("cet addresse mail est déjà utilisée");

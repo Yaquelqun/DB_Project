@@ -49,6 +49,10 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 			        } else {
 			        	if(subList.getSelectedValue().equals("corporate")){
 			        		System.out.println("wololo");
+			        		SIRETEnter = new JTextField("Siret de votre entreprise");
+							//TODO Faudrait trouver une solution pour lui faire comprendre que je parle du panel avec le this
+			        		//this.add(SIRETEnter);
+							//this.repaint();
 			        	}
 			        }
 			    }
@@ -71,26 +75,20 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 			client.subChoice = availableSubs.get(indexChoice);
 			if(subChoice.equals("Corporate")){
 				System.out.println("vérification présence entreprise..."); 
-				boolean verifCompany = false;
-				if(verifCompany == false){
+				if(client.sqlback.verifCompany(subChoice)){
+					client.currentUser.setSIRET(SIRETEnter.getText());
 					client.pageCorpSub();
 				}
 				else{
-//TODO affichage de la derniere page (choix moyen de paiement + si entreprise enregistrement)
+					client.currentUser.setSub(subChoice);
+					client.currentUser.setSIRET(SIRETEnter.getText());
+//TODO remplir la fin de User et l'enregistrer en BDD
+					client.pageMain();
 				}
 			}
 			else{
+				client.currentUser.setSub(subChoice);
 				client.pageMdp();
-			}
-		}
-		if(s == listenerCorporate){
-			subChoice = subList.getSelectedValue();
-			if(subChoice.equals("Corporate")){
-				SIRETEnter = new JTextField("Siret de votre entreprise");
-				this.add(SIRETEnter);
-				this.repaint();
-			}
-			else{
 			}
 		}
 	}

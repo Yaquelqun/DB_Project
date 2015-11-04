@@ -9,7 +9,93 @@ public class User {
 		this.userName = userName;
 	}
 
+	public String getLogin() {
+		return userName;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
 	
+	public String getPsw() {
+		return userName;
+	}
+
+	public void setPsw(String psw) {
+		this.psw = psw;
+	}
+	
+	public String getSIRET() {
+		return SIRET;
+	}
+
+	public void setSIRET(String SIRET) {
+		this.SIRET = SIRET;
+	}
+	
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+	
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+	
+	public String getSub() {
+		return subName;
+	}
+
+	public void setSub(String subName) {
+		this.subName = subName;
+	}
+	
+	public int getRefUser() {
+		return refUser;
+	}
+
+	public void setRefUser(int refUser) {
+		this.refUser = refUser;
+	}
+	
+	public int getLastCo() {
+		return lastCo;
+	}
+
+	public void setLastCo(int lastCo) {
+		this.lastCo = lastCo;
+	}
+	
+	public int getMAchNb() {
+		return machineNb;
+	}
+
+	public void setMachNb(int machNb) {
+		this.machineNb = machNb;
+	}
+	
+	public int getSubStart() {
+		return subStart;
+	}
+
+	public void setSubStart(int subStart) {
+		this.subStart = subStart;
+	}
+	
+	public int getSubSize() {
+		return subSize;
+	}
+
+	public void setSubSize(int subSize) {
+		this.subSize = subSize;
+	}
 
 String userName;
 String login;
