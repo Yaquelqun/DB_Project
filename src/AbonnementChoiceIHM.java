@@ -83,7 +83,6 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 				client.pageMdp();
 			}
 		}
-<<<<<<< HEAD
 		if(s == listenerCorporate){
 			subChoice = subList.getSelectedValue();
 			if(subChoice.equals("Corporate")){
@@ -94,7 +93,5 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 			else{
 			}
 		}
-=======
->>>>>>> origin/lnoiray
 	}
 }
