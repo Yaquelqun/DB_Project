@@ -12,7 +12,7 @@ public class InscriptionIHM extends JPanel implements ActionListener {
 	Dimension fenSize = new Dimension(300,200);
 	
 	public InscriptionIHM(Client client){
-		this.client = client;
+		this.client = client; 
 		this.client.setPreferredSize(fenSize);
 		this.setPreferredSize(fenSize);
 //TODO ajouter une image inscription

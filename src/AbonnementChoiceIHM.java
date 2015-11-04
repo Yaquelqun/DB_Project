@@ -8,12 +8,14 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Data.Sub;
+
 public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 	private Client client;
 	private JButton OKButton;
 	private JList<String> subList;
 	private String subChoice;
-	private Vector<String> availableSubs;
+	private Vector<Sub> availableSubs;
 	Dimension fenSize = new Dimension(300,200);
 	
 	public AbonnementChoiceIHM(Client client){
@@ -23,12 +25,13 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 //TODO ajouter une image au login
 
 		availableSubs = client.sqlback.getSubs();
+		Vector<String> names = new Vector<String>();
 		for( int i=0; i< availableSubs.size(); i++)
 		{
-			System.out.println(availableSubs.get(i));
+			names.add(availableSubs.get(i).getSubName());
 		}
 
-		subList = new JList<String>(availableSubs);
+		subList = new JList<String>(names);
 		this.add(subList);
 		OKButton = new JButton("OK");
 		OKButton.addActionListener(this);
@@ -40,7 +43,7 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 		Object s = evnt.getSource();
 		if(s == OKButton){
 //TODO enregistrement de l'abonnement choisi
-			//subChoice = loginEnter.getText();
+			subChoice = subList.getSelectedValue();
 			System.out.println(subChoice + " connexion..."); 
 //TODO création de compte main et changement de panel via fonction main 
 		}
