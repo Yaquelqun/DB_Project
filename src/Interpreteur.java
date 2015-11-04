@@ -120,4 +120,25 @@ public class Interpreteur {
 		}
 		return false;
 	}
+
+	public boolean CompanyCheck(String Siret){
+		System.out.println("creation et execution de la requ�te");
+		requete = "SELECT companyname FROM company WHERE siret = '"+Siret+"'";
+		try {
+			state = connec.createStatement();
+			res = state.executeQuery(requete);
+		} catch (SQLException e) {
+			System.out.println("probleme requete");
+			return false;
+		}
+
+		try {
+			if(res.next() == false) return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
+	}
+
 }
