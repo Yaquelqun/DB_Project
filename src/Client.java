@@ -3,12 +3,14 @@ import javax.swing.*;
 import java.io.* ; 
 import Data.Sub;
 import Data.User;
+import Data.Company;
 
 public class Client extends JFrame  {
 
 	static Interpreteur sqlback;
 	public Sub subChoice;
 	public User currentUser;
+	public Company currentCompany;
 	
 	
 	public Client() {
@@ -20,6 +22,7 @@ public class Client extends JFrame  {
 		pack();
 		setVisible(true);
 		currentUser = new User();
+		currentCompany = new Company();
 	}
 	
 	public void pageInscription(){

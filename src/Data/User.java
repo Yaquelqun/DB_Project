@@ -1,4 +1,5 @@
 package Data;
+import java.util.*;
 
 public class User {
 	public String getUserName() {
@@ -65,11 +66,11 @@ public class User {
 		this.refUser = refUser;
 	}
 	
-	public int getLastCo() {
+	public Date getLastCo() {
 		return lastCo;
 	}
 
-	public void setLastCo(int lastCo) {
+	public void setLastCo(Date lastCo) {
 		this.lastCo = lastCo;
 	}
 	
@@ -81,11 +82,11 @@ public class User {
 		this.machineNb = machNb;
 	}
 	
-	public int getSubStart() {
+	public Date getSubStart() {
 		return subStart;
 	}
 
-	public void setSubStart(int subStart) {
+	public void setSubStart(Date subStart) {
 		this.subStart = subStart;
 	}
 	
@@ -105,16 +106,16 @@ String mail;
 String mdp;
 String subName;
  int refUser;
- int lastCo;
+ Date lastCo;
  int machineNb;
- int subStart;
+ Date subStart;
  int subSize;
  
  public User(){
 	 
  }
  
- public User(String userName, String login, String psw, String SIRET, String mail, String mdp, String subName, int refUser, int lastCo, int machineNb, int subStart, int subSize){
+ public User(String userName, String login, String psw, String SIRET, String mail, String mdp, String subName, int refUser, Date lastCo, int machineNb, Date subStart, int subSize){
 	 this.userName = userName;
 	 this.login = login;
 	 this.psw = psw;
