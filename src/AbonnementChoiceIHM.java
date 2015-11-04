@@ -43,7 +43,7 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 		Object s = evnt.getSource();
 		if(s == OKButton){
 //TODO enregistrement de l'abonnement choisi
-			//subChoice = loginEnter.getText();
+			subChoice = subList.getSelectedValue();
 			System.out.println(subChoice + " connexion..."); 
 //TODO création de compte main et changement de panel via fonction main 
 		}
