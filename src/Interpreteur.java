@@ -121,7 +121,7 @@ public class Interpreteur {
 		return false;
 	}
 
-	public boolean CompanyCheck(String Siret){
+	public boolean verifCompany(String Siret){
 		System.out.println("creation et execution de la requ�te");
 		requete = "SELECT companyname FROM company WHERE siret = '"+Siret+"'";
 		try {
