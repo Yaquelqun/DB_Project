@@ -7,15 +7,20 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionListener;
+
+import com.sun.corba.se.impl.naming.pcosnaming.NameServer;
 
 import Data.Sub;
 
 public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 	private Client client;
 	private JButton OKButton;
+	private JTextField SIRETEnter;
 	private JList<String> subList;
 	private String subChoice;
 	private Vector<Sub> availableSubs;
+	private ListSelectionListener listenerCorporate;
 	Dimension fenSize = new Dimension(300,200);
 	
 	public AbonnementChoiceIHM(Client client){
@@ -32,6 +37,7 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 		}
 
 		subList = new JList<String>(names);
+		subList.addListSelectionListener(listenerCorporate);
 		this.add(subList);
 		OKButton = new JButton("OK");
 		OKButton.addActionListener(this);
@@ -44,14 +50,33 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 		if(s == OKButton){
 // enregistrement de l'abonnement choisi
 			subChoice = subList.getSelectedValue();
-//TODO récupérer les carac de l'abonnement choisi pour l'enregistrer dans un objet sub
-			System.out.println(subChoice + " connexion..."); 
-//TODO affichage de la derniere page (choix moyen de paiement + si entreprise enregistrement)
+			int indexChoice = subList.getSelectedIndex();
+			client.subChoice = availableSubs.get(indexChoice);
 			if(subChoice.equals("Corporate")){
-				System.out.println(subChoice + " connexion..."); 
+				System.out.println("vérification présence entreprise..."); 
+				boolean verifCompany = false;
+				if(verifCompany == false){
+					client.pageCorpSub();
+				}
+				else{
+//TODO affichage de la derniere page (choix moyen de paiement + si entreprise enregistrement)
+				}
 			}
 			else{
 				client.pageMdp();
+			}
+		}
+		if(s == listenerCorporate){
+			subChoice = subList.getSelectedValue();
+			if(subChoice.equals("Corporate")){
+				SIRETEnter = new JTextField("Siret de votre entreprise");
+				this.add(SIRETEnter);
+				this.repaint();
+			}
+			else{
+				SIRETEnter = new JTextField("Siret de votre entreprise");
+				this.add(SIRETEnter);
+				client.pack();
 			}
 		}
 	}
