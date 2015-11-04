@@ -43,6 +43,16 @@ public class Client extends JFrame  {
 		pack();
 	}
 	
+	public void pageMain(){
+		ClientIHM clientPage = new ClientIHM(this);
+		setContentPane(clientPage);
+		pack();
+	}
+	
+	public void infoBox(String infoMessage, String titleBar){
+        JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
+    }
+	
 	public static void main(String[] args) {
 
 		Client client = new Client();

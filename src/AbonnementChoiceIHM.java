@@ -74,9 +74,6 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 				this.repaint();
 			}
 			else{
-				SIRETEnter = new JTextField("Siret de votre entreprise");
-				this.add(SIRETEnter);
-				client.pack();
 			}
 		}
 	}

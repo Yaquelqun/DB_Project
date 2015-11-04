@@ -40,6 +40,7 @@ public class CorporateSubIHM extends JPanel implements ActionListener {
 			SIRET = SIRETEnter.getText();
 			nbEmployee = Integer.parseInt(nbEnter.getText());
 //TODO enregistrement de la companie dans la base de donnée puis de l'utilisateur
+			client.pageMdp();
 		}
 	}
 }

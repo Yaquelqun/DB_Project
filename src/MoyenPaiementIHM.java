@@ -37,9 +37,10 @@ public class MoyenPaiementIHM extends JPanel implements ActionListener {
 		if(s == OKButton){
 // enregistrement de l'abonnement choisi
 			mdpChoice = mdpList.getSelectedValue();
-//TODO récupérer le moyen de paiement choisi pour l'enregistrer dans l'objet user
+//TODO récupérer le moyen de paiement choisi pour l'enregistrer dans l'objet user + enregistrer l'objet user dans la base
 			System.out.println(mdpChoice + " connexion..."); 
-//TODO message pop-up inscription complète + affichage client
+			client.infoBox("Votre inscription a bien été enregistrée et vous allez être redirigé vers votre page d'accueil", "Inscription complète");
+			client.pageMain();
 		}
 	}
 }
