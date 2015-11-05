@@ -1,26 +1,29 @@
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.Vector;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
+
+import javafx.geometry.Orientation;
 
 public class MoyenPaiementIHM extends JPanel implements ActionListener {
 	private Client client;
 	private JButton OKButton;
 	private JList<String> mdpList;
 	private String mdpChoice;
-	Dimension fenSize = new Dimension(300,200);
+	Dimension fenSize = new Dimension(200,300);
 	
 	public MoyenPaiementIHM(Client client){
 		this.client = client;
 		this.client.setPreferredSize(fenSize);
 		this.setPreferredSize(fenSize);
 //TODO ajouter une image au login
-
 		Vector<String> names = new Vector<String>();
 		names.addElement("Carte Bancaire");
 		names.addElement("Paypal");
@@ -54,6 +57,7 @@ public class MoyenPaiementIHM extends JPanel implements ActionListener {
 			}
 			client.infoBox("Votre inscription a bien été enregistrée et vous allez être redirigé vers votre page d'accueil", "Inscription complète");
 			client.pageMain();
+			
 		}
 	}
 }

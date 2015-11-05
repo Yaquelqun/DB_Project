@@ -11,7 +11,7 @@ public class User {
 	}
 
 	public String getLogin() {
-		return userName;
+		return login;
 	}
 
 	public void setLogin(String login) {
@@ -19,7 +19,7 @@ public class User {
 	}
 	
 	public String getPsw() {
-		return userName;
+		return psw;
 	}
 
 	public void setPsw(String psw) {
