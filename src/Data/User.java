@@ -1,6 +1,8 @@
 package Data;
 import java.util.*;
 
+import java.sql.Date;
+
 public class User {
 	public String getUserName() {
 		return userName;

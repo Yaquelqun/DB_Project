@@ -1,7 +1,9 @@
 import java.sql.*;
 import java.util.Vector;
 
+import Data.Company;
 import Data.Sub;
+import Data.User;
 
 public class Interpreteur {
 
@@ -139,6 +141,28 @@ public class Interpreteur {
 			e.printStackTrace();
 		}
 		return true;
+	}
+	
+	public void ajoutUser(User mec){
+		String requete = "INSERT INTO utilisateur VALUES ('"+mec.getUserName()+"','"+mec.getLogin()+"','"+mec.getPsw()+"',"+mec.getRefUser()+",'"+mec.getSIRET()+"','"+mec.getLastCo()+"','"+mec.getMail()+"','"+mec.getSub()+"',"+mec.getMAchNb()+",'"+mec.getSubStart()+"',"+mec.getSubSize()+",'"+mec.getMdp()+"')";
+		try {
+			state= connec.createStatement();
+			int nbMaj = state.executeUpdate(requete);
+			System.out.println("nb mise a jour = "+nbMaj);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void ajoutCompany(Company societe){
+		String requete = "INSERT INTO utilisateur VALUES ('"+societe.getSIRET()+"',"+societe.getEmployeeNb()+",'"+societe.getCompanyName()+"','"+societe.getFianceMail()+"')";
+		try {
+			state= connec.createStatement();
+			int nbMaj = state.executeUpdate(requete);
+			System.out.println("nb mise a jour = "+nbMaj);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
