@@ -38,14 +38,20 @@ public class MoyenPaiementIHM extends JPanel implements ActionListener {
 		if(s == OKButton){
 // enregistrement de l'abonnement choisi
 			java.util.Date currentDate = new Date();
-			java.sql.Date sqlDate = (java.sql.Date) new Date(currentDate.getTime());
+			java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
 			mdpChoice = mdpList.getSelectedValue();
 			client.currentUser.setMdp(mdpChoice);
 			client.currentUser.setSubStart(sqlDate);
 			client.currentUser.setSubSize(30);
 			client.currentUser.setLastCo(sqlDate);
-//TODO enregistrer l'objet user dans la base
-			System.out.println(mdpChoice + " connexion..."); 
+// enregistrer l'objet user dans la base
+			System.out.println("connexion...");
+			try {
+				client.sqlback.ajoutUser(client.currentUser);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			client.infoBox("Votre inscription a bien été enregistrée et vous allez être redirigé vers votre page d'accueil", "Inscription complète");
 			client.pageMain();
 		}

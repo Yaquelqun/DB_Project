@@ -50,8 +50,8 @@ public class Client extends JFrame  {
 	}
 	
 	public void pageMain(){
-		ClientIHM clientPage = new ClientIHM(this);
-		setContentPane(clientPage);
+		BrowsingFoldersIHM foldPage = new BrowsingFoldersIHM(this);
+		setContentPane(foldPage);
 		pack();
 	}
 	
