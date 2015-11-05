@@ -311,4 +311,50 @@ public class Interpreteur {
 		}		
 		return UserNumber;
 	}
+	
+	public int getFolderNb() {
+
+		int FolderNumber =0;
+		requete = "SELECT * FROM folder";
+		System.out.println(requete);
+		try {
+			state = connec.createStatement();
+			res = state.executeQuery(requete);
+		} catch (SQLException e) {
+			System.out.println("probleme requete");
+			return 0;
+		}
+
+		//parcours des donn�es retourn�es
+		System.out.println("parcours des donn�es retourn�es");
+		try {
+			while (res.next()) {
+				FolderNumber++;
+			}
+
+		} catch (SQLException e) {
+			arret(e.getMessage());
+		}		
+		return FolderNumber;
+	}
+	
+	public void addFolder(int refUser, String folderName){
+		int refFolder = getFolderNb()+1;
+		String requete = "INSERT INTO folder VALUES ("+refFolder+",'"+folderName+"')";
+		try {
+			state= connec.createStatement();
+			int nbMaj = state.executeUpdate(requete);
+			System.out.println("nb mise a jour = "+nbMaj);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		requete = "INSERT INTO groupe VALUES ("+refUser+","+refFolder+")";
+		try {
+			state= connec.createStatement();
+			int nbMaj = state.executeUpdate(requete);
+			System.out.println("nb mise a jour = "+nbMaj);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
