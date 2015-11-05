@@ -10,32 +10,32 @@ public class Interpreteur {
 	Statement state = null;
 	ResultSet res = null;
 	String requete = null;
-	
+
 	private static void arret(String message) {
 		System.err.println(message);
 		System.exit(99);
 	}
-	
+
 	public Interpreteur (){
 		System.out.println("démarrage de l'interpréteur");
 		// chargement du pilote
-				try {
-					Class.forName("oracle.jdbc.driver.OracleDriver");
-				} catch (ClassNotFoundException e) {
-					arret("Impossible de charger le pilote jdbc:odbc");
-				}
-				
-				//connection a la base de donn�es
-				try{
-					connec = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE","yaquelqun","renard");
-				} catch (SQLException e){
-					arret("Connection a la base de donnees impossible");
-				}	
-			System.out.println("interpréteur connecté");
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (ClassNotFoundException e) {
+			arret("Impossible de charger le pilote jdbc:odbc");
+		}
+
+		//connection a la base de donn�es
+		try{
+			connec = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE","yaquelqun","renard");
+		} catch (SQLException e){
+			arret("Connection a la base de donnees impossible");
+		}	
+		System.out.println("interpréteur connecté");
 	}
-	
+
 	public boolean checkLogin(String mail, String psw) throws Exception{
-		
+
 		//creation et execution de la requete
 		System.out.println("creation et execution de la requ�te");
 		requete = "SELECT psw FROM utilisateur WHERE mail = '"+mail+"'";
@@ -59,7 +59,7 @@ public class Interpreteur {
 					return true;
 				}
 			}
-			
+
 			System.out.println("utilisateur inconnu");
 			return false;
 		} catch (SQLException e) {
@@ -94,7 +94,7 @@ public class Interpreteur {
 				tmp.setSubPrice(res.getInt(6));
 				sublist.add(tmp);
 			}
-			
+
 		} catch (SQLException e) {
 			arret(e.getMessage());
 		}		
@@ -112,7 +112,7 @@ public class Interpreteur {
 			System.out.println("probleme requete");
 			return false;
 		}
-		
+
 		try {
 			if (!res.next())
 			{
@@ -145,7 +145,7 @@ public class Interpreteur {
 		}
 		return true;
 	}
-	
+
 	public void ajoutUser(User mec){
 		String requete = "INSERT INTO utilisateur VALUES ('"+mec.getUserName()+"','"+mec.getLogin()+"','"+mec.getPsw()+"',"+mec.getRefUser()+",'"+mec.getSIRET()+"',TO_DATE('"+mec.getLastCo()+"','YYYY-MM-DD'),'"+mec.getMail()+"','"+mec.getSub()+"',"+mec.getMAchNb()+",TO_DATE('"+mec.getSubStart()+"','YYYY-MM-DD'),"+mec.getSubSize()+",'"+mec.getMdp()+"')";
 		System.out.println(requete);
@@ -157,7 +157,7 @@ public class Interpreteur {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void ajoutCompany(Company societe){
 		String requete = "INSERT INTO utilisateur VALUES ('"+societe.getSIRET()+"',"+societe.getEmplNb()+",'"+societe.getCompanyName()+"','"+societe.getFinanceMail()+"')";
 		try {
@@ -168,7 +168,7 @@ public class Interpreteur {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Vector<Folder> getUserFolder(int refUser) {
 
 		requete = "select * from folder,groupe where groupe.REFUSER = "+refUser+" and groupe.REFFOLDER = folder.REFFOLDER ";
@@ -191,7 +191,7 @@ public class Interpreteur {
 				tmp.setFolderName(res.getString(2));
 				folderList.add(tmp);
 			}
-			
+
 			for (int i=0;i<folderList.size();i++){
 				int weight = 0;
 				int number =0;
@@ -205,12 +205,12 @@ public class Interpreteur {
 				folderList.get(i).setFolderComponentsNumber(number);
 				folderList.get(i).setFolderWeight(weight);
 			}
-			
+
 		} catch (SQLException e) {
 			arret(e.getMessage());
 		}
-		
-		
+
+
 		return folderList;
 	}
 
@@ -241,13 +241,13 @@ public class Interpreteur {
 				tmp.setFileType(res.getString(7));
 				fileList.add(tmp);
 			}
-			
+
 		} catch (SQLException e) {
 			arret(e.getMessage());
 		}		
 		return fileList;
 	}
-	
+
 	public User getUser(String mail) {
 
 		User tmp = new User();
@@ -279,10 +279,36 @@ public class Interpreteur {
 				tmp.setSubSize(res.getInt(11));
 				tmp.setMdp(res.getString(12));
 			}
-			
+
 		} catch (SQLException e) {
 			arret(e.getMessage());
 		}		
 		return tmp;
+	}
+
+	public int getUserNb() {
+
+		int UserNumber =0;
+		requete = "SELECT * FROM utilisateur";
+		System.out.println(requete);
+		try {
+			state = connec.createStatement();
+			res = state.executeQuery(requete);
+		} catch (SQLException e) {
+			System.out.println("probleme requete");
+			return 0;
+		}
+
+		//parcours des donn�es retourn�es
+		System.out.println("parcours des donn�es retourn�es");
+		try {
+			while (res.next()) {
+				UserNumber++;
+			}
+
+		} catch (SQLException e) {
+			arret(e.getMessage());
+		}		
+		return UserNumber;
 	}
 }
