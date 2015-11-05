@@ -36,12 +36,11 @@ public class LoginIHM extends JPanel implements ActionListener {
 			//enregistrement du login/psw
 			mail = mailEnter.getText();
 			psw = pswEnter.getText();
-			System.out.println(mail + " " + psw + " connexion..."); 
-//TODO comparer à la base de données et connexion done ou pas
+			System.out.println(mail + " " + psw + " connexion...");
 			try {
 				if(client.sqlback.checkLogin(mail, psw)){
-				//TODO enregistrer le client connecté
-				client.pageMain();
+					client.currentUser = client.sqlback.getUser(mail);
+					client.pageMain();
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
