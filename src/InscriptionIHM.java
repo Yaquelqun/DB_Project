@@ -50,7 +50,7 @@ public class InscriptionIHM extends JPanel implements ActionListener {
 					System.out.println(login + " " + psw1 + " choix abonnement..."); 
 				}
 				else{
-					System.out.println("cet addresse mail est déjà utilisée");
+					client.infoBox("cette addresse mail est déjà utilisée", "probleme");
 				}
 			}
 			else{

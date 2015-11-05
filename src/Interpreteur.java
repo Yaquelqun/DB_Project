@@ -104,7 +104,7 @@ public class Interpreteur {
 
 	public boolean UserCheck(String mail)
 	{
-		requete = ("SELECT * FROM utilisateur where mail ='"+mail+"'");
+		requete = ("SELECT mail FROM utilisateur where mail ='"+mail+"'");
 		Vector<Sub> sublist = new Vector<Sub>();
 		try {
 			state = connec.createStatement();
@@ -115,10 +115,14 @@ public class Interpreteur {
 		}
 
 		try {
-			if(res.next() == false) return true;
+			res.beforeFirst();
+			if(res.next() == false){
+				System.out.println("utilisateur unique");
+				return true;
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return false;
 	}
@@ -144,7 +148,8 @@ public class Interpreteur {
 	}
 	
 	public void ajoutUser(User mec){
-		String requete = "INSERT INTO utilisateur VALUES ('"+mec.getUserName()+"','"+mec.getLogin()+"','"+mec.getPsw()+"',"+mec.getRefUser()+",'"+mec.getSIRET()+"','"+mec.getLastCo()+"','"+mec.getMail()+"','"+mec.getSub()+"',"+mec.getMAchNb()+",'"+mec.getSubStart()+"',"+mec.getSubSize()+",'"+mec.getMdp()+"')";
+		String requete = "INSERT INTO utilisateur VALUES ('"+mec.getUserName()+"','"+mec.getLogin()+"','"+mec.getPsw()+"',"+mec.getRefUser()+",'"+mec.getSIRET()+"',TO_DATE('"+mec.getLastCo()+"','YYYY-MM-DD'),'"+mec.getMail()+"','"+mec.getSub()+"',"+mec.getMAchNb()+",TO_DATE('"+mec.getSubStart()+"','YYYY-MM-DD'),"+mec.getSubSize()+",'"+mec.getMdp()+"')";
+		System.out.println(requete);
 		try {
 			state= connec.createStatement();
 			int nbMaj = state.executeUpdate(requete);

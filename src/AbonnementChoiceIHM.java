@@ -68,6 +68,7 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener,ListSe
 			}
 			else{
 				client.currentUser.setSub(subChoice);
+				client.currentUser.setSIRET("noComp");
 				client.pageMdp();
 			}
 		}
