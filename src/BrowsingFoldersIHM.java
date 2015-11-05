@@ -10,7 +10,8 @@ import javax.swing.JPanel;
 public class BrowsingFoldersIHM extends JPanel implements ActionListener {
 	
 	private Client client;
-	private JButton OKButton;
+	private JPanel panelBrowse, panelInfos, panelButton, panelManagement;
+	private JButton shareButton;
 	private JList<String> mdpList;
 	private String mdpChoice;
 	Dimension fenSize = new Dimension(300,200);
@@ -19,18 +20,26 @@ public class BrowsingFoldersIHM extends JPanel implements ActionListener {
 		this.client = client;
 		this.client.setPreferredSize(fenSize);
 		this.setPreferredSize(fenSize);
-//TODO ajouter une image au login
-
-		Vector<String> names = new Vector<String>();
-		names.addElement("Carte Bancaire");
-		names.addElement("Paypal");
-		names.addElement("Prélèvement Automatique");
-		mdpList = new JList<String>(names);
-		this.add(mdpList);
-		OKButton = new JButton("OK");
-		OKButton.addActionListener(this);
-		this.add(OKButton);
+		panelBrowse = new JPanel();
+		creaPanelBrowse();
+		this.add(panelBrowse);
+		panelManagement = new JPanel();
+		creaPanelManagement();
+		this.add(panelManagement);
 		this.client.pack();
+	}
+
+	private void creaPanelManagement() {
+		// TODO Auto-generated method stub
+		panelInfos = new JPanel();
+		this.add(panelInfos);
+		panelButton = new JPanel();
+		this.add(panelButton);
+	}
+
+	private void creaPanelBrowse() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public void actionPerformed(ActionEvent arg0) {

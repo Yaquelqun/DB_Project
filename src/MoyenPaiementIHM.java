@@ -10,8 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
-import javafx.geometry.Orientation;
-
 public class MoyenPaiementIHM extends JPanel implements ActionListener {
 	private Client client;
 	private JButton OKButton;
