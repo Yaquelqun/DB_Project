@@ -95,7 +95,8 @@ public class BrowsingFoldersIHM extends JPanel implements ActionListener, ListSe
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub
-		
+		folderSelected = folderNamesList.getSelectedValue();
+		//TODO afficher les infos du dossier
 	}
 
 }
