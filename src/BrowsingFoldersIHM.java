@@ -9,15 +9,21 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
-public class BrowsingFoldersIHM extends JPanel implements ActionListener {
+import Data.Folder;
+
+public class BrowsingFoldersIHM extends JPanel implements ActionListener, ListSelectionListener {
 	
 	private Client client;
 	private JPanel panelBrowse, panelInfos, panelButton, panelManagement;
 	private JButton shareButton, suppButton, syncButton, newButton;
 	private JTextArea infoArea;
-	private JList<String> mdpList;
-	private String mdpChoice;
+	private JList<String> folderNamesList;
+	private Vector<String> folderNamesVector;
+	private Vector<Folder> folderList;
+	private String folderSelected;
 	Dimension fenSize = new Dimension(900,600), infoSize = new Dimension(200,300), manageSize = new Dimension(200, 600), browseSize = new Dimension(600, 600);
 	
 	public BrowsingFoldersIHM(Client client){
@@ -67,10 +73,27 @@ public class BrowsingFoldersIHM extends JPanel implements ActionListener {
 	private void creaPanelBrowse() {
 		// TODO Auto-generated method stub
 		panelBrowse.setPreferredSize(browseSize);
+		folderList = client.sqlback.getUserFolder(client.currentUser.getRefUser());
+		folderNamesVector = new Vector<String>();
+		for( int i=0; i< folderList.size(); i++)
+		{
+			folderNamesVector.add(folderList.get(i).getFolderName());
+		}
+
+		folderNamesList = new JList<String>(folderNamesVector);
+		folderNamesList.setPreferredSize(browseSize);
+		folderNamesList.addListSelectionListener(this);
+		panelBrowse.add(folderNamesList);
 		
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
