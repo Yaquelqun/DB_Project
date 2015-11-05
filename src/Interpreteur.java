@@ -251,7 +251,7 @@ public class Interpreteur {
 	public User getUser(String mail) {
 
 		User tmp = new User();
-		requete = "SELECT * FROM utilisateur where mail ="+mail;
+		requete = "SELECT * FROM utilisateur where mail ='"+mail+"'";
 		System.out.println(requete);
 		try {
 			state = connec.createStatement();
