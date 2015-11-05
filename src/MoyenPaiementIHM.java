@@ -1,8 +1,8 @@
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
 import java.util.Date;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -37,12 +37,13 @@ public class MoyenPaiementIHM extends JPanel implements ActionListener {
 		Object s = evnt.getSource();
 		if(s == OKButton){
 // enregistrement de l'abonnement choisi
-			Date currentDate = new Date();
+			java.util.Date currentDate = new Date();
+			java.sql.Date sqlDate = (java.sql.Date) new Date(currentDate.getTime());
 			mdpChoice = mdpList.getSelectedValue();
 			client.currentUser.setMdp(mdpChoice);
-			client.currentUser.setSubStart(currentDate);
+			client.currentUser.setSubStart(sqlDate);
 			client.currentUser.setSubSize(30);
-			client.currentUser.setLastCo(currentDate);
+			client.currentUser.setLastCo(sqlDate);
 //TODO enregistrer l'objet user dans la base
 			System.out.println(mdpChoice + " connexion..."); 
 			client.infoBox("Votre inscription a bien été enregistrée et vous allez être redirigé vers votre page d'accueil", "Inscription complète");

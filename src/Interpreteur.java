@@ -155,7 +155,7 @@ public class Interpreteur {
 	}
 	
 	public void ajoutCompany(Company societe){
-		String requete = "INSERT INTO utilisateur VALUES ('"+societe.getSIRET()+"',"+societe.getEmployeeNb()+",'"+societe.getCompanyName()+"','"+societe.getFianceMail()+"')";
+		String requete = "INSERT INTO utilisateur VALUES ('"+societe.getSIRET()+"',"+societe.getEmplNb()+",'"+societe.getCompanyName()+"','"+societe.getFinanceMail()+"')";
 		try {
 			state= connec.createStatement();
 			int nbMaj = state.executeUpdate(requete);
