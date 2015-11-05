@@ -15,10 +15,11 @@ public class LoginIHM extends JPanel implements ActionListener {
 		this.client.setPreferredSize(fenSize);
 		this.setPreferredSize(fenSize);
 //TODO ajouter une image au login
-		mailEnter = new JTextField("Votre mail",20);
+
+		mailEnter = new JTextField("jean.aimarre@gmail.com",20);
 		this.add(mailEnter);
 //TODO mettre le psw en caché
-		pswEnter = new JTextField("Votre mot de passe",20);
+		pswEnter = new JTextField("renard",20);
 		this.add(pswEnter);
 		connectButton = new JButton("Se connecter");
 		connectButton.addActionListener(this);
@@ -38,9 +39,10 @@ public class LoginIHM extends JPanel implements ActionListener {
 			System.out.println(mail + " " + psw + " connexion..."); 
 //TODO comparer à la base de données et connexion done ou pas
 			try {
-				client.sqlback.checkLogin(mail, psw);
+				if(client.sqlback.checkLogin(mail, psw)){
 				//TODO enregistrer le client connecté
 				client.pageMain();
+				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
