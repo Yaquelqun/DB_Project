@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import Data.Company;
 
 public class CorporateSubIHM extends JPanel implements ActionListener {
 
@@ -39,7 +40,11 @@ public class CorporateSubIHM extends JPanel implements ActionListener {
 			financeMail = mailEnter.getText();
 			SIRET = SIRETEnter.getText();
 			nbEmployee = Integer.parseInt(nbEnter.getText());
-//TODO enregistrement de la companie dans la base de donnée puis de l'utilisateur
+			client.currentCompany.setSIRET(SIRET);
+			client.currentCompany.setCompanyName(nomCompany);
+			client.currentCompany.setFinanceMail(financeMail);
+			client.currentCompany.setEmplNb(1);
+//TODO enregistrement de la companie dans la base de donnée
 			client.pageMdp();
 		}
 	}
