@@ -1,4 +1,5 @@
 package Data;
+import java.util.*;
 
 import java.sql.Date;
 
@@ -71,8 +72,8 @@ public class User {
 		return lastCo;
 	}
 
-	public void setLastCo(Date lastCo) {
-		this.lastCo = lastCo;
+	public void setLastCo(Date currentDate) {
+		this.lastCo = currentDate;
 	}
 	
 	public int getMAchNb() {
