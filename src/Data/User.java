@@ -1,6 +1,4 @@
 package Data;
-import java.util.*;
-
 import java.sql.Date;
 
 public class User {
@@ -125,10 +123,10 @@ String subName;
 	 this.mail = mail;
 	 this.mdp = mdp;
 	 this.subName = subName;
-	  this.refUser = refUser;
-	  this.lastCo = lastCo;
-	  this.machineNb = machineNb;
-	  this.subStart = subStart;
-	  this.subSize = subSize;
+	 this.refUser = refUser;
+	 this.lastCo = lastCo;
+	 this.machineNb = machineNb;
+	 this.subStart = subStart;
+	 this.subSize = subSize;
  }
 }
