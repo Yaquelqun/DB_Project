@@ -20,7 +20,6 @@ public class MoyenPaiementIHM extends JPanel implements ActionListener {
 		this.client.setPreferredSize(fenSize);
 		this.setPreferredSize(fenSize);
 //TODO ajouter une image au login
-
 		Vector<String> names = new Vector<String>();
 		names.addElement("Carte Bancaire");
 		names.addElement("Paypal");
@@ -48,6 +47,7 @@ public class MoyenPaiementIHM extends JPanel implements ActionListener {
 			System.out.println(mdpChoice + " connexion..."); 
 			client.infoBox("Votre inscription a bien été enregistrée et vous allez être redirigé vers votre page d'accueil", "Inscription complète");
 			client.pageMain();
+			
 		}
 	}
 }

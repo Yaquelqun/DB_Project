@@ -14,7 +14,7 @@ import com.sun.corba.se.impl.naming.pcosnaming.NameServer;
 
 import Data.Sub;
 
-public class AbonnementChoiceIHM extends JPanel implements ActionListener {
+public class AbonnementChoiceIHM extends JPanel implements ActionListener,ListSelectionListener {
 	private Client client;
 	private JButton OKButton;
 	private JTextField SIRETEnter;
@@ -38,27 +38,7 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 		}
 
 		subList = new JList<String>(names);
-		subList.addListSelectionListener(new ListSelectionListener() {
-			
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				if (e.getValueIsAdjusting() == false) {
-
-			        if (subList.getSelectedIndex() == -1) {
-
-			        } else {
-			        	if(subList.getSelectedValue().equals("corporate")){
-			        		System.out.println("wololo");
-			        		SIRETEnter = new JTextField("Siret de votre entreprise");
-							//TODO Faudrait trouver une solution pour lui faire comprendre que je parle du panel avec le this
-			        		//this.add(SIRETEnter);
-							//this.repaint();
-			        	}
-			        }
-			    }
-				
-			}
-		});
+		subList.addListSelectionListener(this);
 		this.add(subList);
 		OKButton = new JButton("OK");
 		OKButton.addActionListener(this);
@@ -91,5 +71,25 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener {
 				client.pageMdp();
 			}
 		}
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getValueIsAdjusting() == false) {
+
+	        if (subList.getSelectedIndex() == -1) {
+
+	        } else {
+	        	if(subList.getSelectedValue().equals("corporate")){
+	        		System.out.println("wololo");
+	        		SIRETEnter = new JTextField("Siret de votre entreprise");	        		
+	        		this.add(SIRETEnter);
+					this.repaint();
+					this.client.pack();
+	        	}
+	        }
+	    }
+		
 	}
 }
