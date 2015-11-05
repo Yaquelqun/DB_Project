@@ -40,6 +40,7 @@ public class BrowsingFoldersIHM extends JPanel implements ActionListener {
 		panelInfos = new JPanel();
 		panelInfos.setPreferredSize(infoSize);
 		infoArea = new JTextArea();
+		infoArea.setEditable(false);
 		infoArea.setPreferredSize(infoSize);
 		panelInfos.add(infoArea);
 		panelManagement.add(panelInfos);
