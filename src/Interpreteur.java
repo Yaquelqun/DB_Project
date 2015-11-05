@@ -34,11 +34,11 @@ public class Interpreteur {
 			System.out.println("interpréteur connecté");
 	}
 	
-	public boolean checkLogin(String login, String psw) throws Exception{
+	public boolean checkLogin(String mail, String psw) throws Exception{
 		
 		//creation et execution de la requete
 		System.out.println("creation et execution de la requ�te");
-		requete = "SELECT psw FROM utilisateur WHERE login = '"+login+"'";
+		requete = "SELECT psw FROM utilisateur WHERE mail = '"+mail+"'";
 		System.out.println(requete);
 		try {
 			state = connec.createStatement();
@@ -246,5 +246,43 @@ public class Interpreteur {
 			arret(e.getMessage());
 		}		
 		return fileList;
+	}
+	
+	public User getUser(String mail) {
+
+		User tmp = new User();
+		requete = "SELECT * FROM utilisateur where mail ="+mail;
+		System.out.println(requete);
+		try {
+			state = connec.createStatement();
+			res = state.executeQuery(requete);
+		} catch (SQLException e) {
+			System.out.println("probleme requete");
+			return null;
+		}
+
+		//parcours des donn�es retourn�es
+		System.out.println("parcours des donn�es retourn�es");
+		try {
+			while (res.next()) {
+
+				tmp.setUserName(res.getString(1)); 
+				tmp.setLogin(res.getString(2));
+				tmp.setPsw(res.getString(3));
+				tmp.setRefUser(res.getInt(4));
+				tmp.setSIRET(res.getString(5));
+				tmp.setLastCo(res.getDate(6));
+				tmp.setMail(res.getString(7));
+				tmp.setSub(res.getString(8));
+				tmp.setMachNb(res.getInt(9));
+				tmp.setSubStart(res.getDate(10));
+				tmp.setSubSize(res.getInt(11));
+				tmp.setMdp(res.getString(12));
+			}
+			
+		} catch (SQLException e) {
+			arret(e.getMessage());
+		}		
+		return tmp;
 	}
 }
