@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -23,12 +24,14 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener,ListSe
 	private Vector<Sub> availableSubs;
 	private ListSelectionListener listenerCorporate;
 	Dimension fenSize = new Dimension(300,200);
-	
+	private boolean pouet;
+
 	public AbonnementChoiceIHM(Client client){
 		this.client = client;
 		this.client.setPreferredSize(fenSize);
 		this.setPreferredSize(fenSize);
-//TODO ajouter une image au login
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		//TODO ajouter une image au login
 
 		availableSubs = client.sqlback.getSubs();
 		Vector<String> names = new Vector<String>();
@@ -45,11 +48,11 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener,ListSe
 		this.add(OKButton);
 		this.client.pack();
 	}
-	
+
 	public void actionPerformed(ActionEvent evnt) {
 		Object s = evnt.getSource();
 		if(s == OKButton){
-// enregistrement de l'abonnement choisi
+			// enregistrement de l'abonnement choisi
 			subChoice = subList.getSelectedValue();
 			int indexChoice = subList.getSelectedIndex();
 			client.subChoice = availableSubs.get(indexChoice);
@@ -62,7 +65,7 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener,ListSe
 				else{
 					client.currentUser.setSub(subChoice);
 					client.currentUser.setSIRET(SIRETEnter.getText());
-//TODO remplir la fin de User et l'enregistrer en BDD
+					//TODO remplir la fin de User et l'enregistrer en BDD
 					client.pageMain();
 				}
 			}
@@ -79,18 +82,26 @@ public class AbonnementChoiceIHM extends JPanel implements ActionListener,ListSe
 		// TODO Auto-generated method stub
 		if (e.getValueIsAdjusting() == false) {
 
-	        if (subList.getSelectedIndex() == -1) {
+			if (subList.getSelectedIndex() == -1) {
 
-	        } else {
-	        	if(subList.getSelectedValue().equals("corporate")){
-	        		System.out.println("wololo");
-	        		SIRETEnter = new JTextField("Siret de votre entreprise");	        		
-	        		this.add(SIRETEnter);
+			} else {
+				if(subList.getSelectedValue().equals("corporate")){
+					pouet = true;
+					SIRETEnter = new JTextField("Siret de votre entreprise");
+					this.add(SIRETEnter);
 					this.repaint();
 					this.client.pack();
-	        	}
-	        }
-	    }
-		
+				}
+				else{
+					if(pouet ==true){
+						this.remove(SIRETEnter);
+
+						this.repaint();
+						this.client.pack();
+					}
+				}
+			}
+		}
+
 	}
 }

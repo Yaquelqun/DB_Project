@@ -113,16 +113,16 @@ public class Interpreteur {
 			System.out.println("probleme requete");
 			return false;
 		}
-
+		
 		try {
-			res.beforeFirst();
-			if(res.next() == false){
-				System.out.println("utilisateur unique");
+			if (!res.next())
+			{
 				return true;
 			}
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		return false;
 	}
