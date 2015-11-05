@@ -214,4 +214,37 @@ public class Interpreteur {
 		return folderList;
 	}
 
+	public Vector<File> getFolderFiles(int refFolder) {
+
+		requete = "SELECT * FROM fichier where reffolder ="+refFolder;
+		System.out.println(requete);
+		Vector<File> fileList = new Vector<File>();
+		try {
+			state = connec.createStatement();
+			res = state.executeQuery(requete);
+		} catch (SQLException e) {
+			System.out.println("probleme requete");
+			return null;
+		}
+
+		//parcours des donn�es retourn�es
+		System.out.println("parcours des donn�es retourn�es");
+		try {
+			while (res.next()) {
+				File tmp = new File();
+				tmp.setRefFile(res.getInt(1));
+				tmp.setFileName(res.getString(2));
+				tmp.setRefFolder(res.getInt(3));
+				tmp.setFileSize(res.getFloat(4));
+				tmp.setVerDate(res.getDate(5));
+				tmp.setFileVer(res.getString(6));
+				tmp.setFileType(res.getString(7));
+				fileList.add(tmp);
+			}
+			
+		} catch (SQLException e) {
+			arret(e.getMessage());
+		}		
+		return fileList;
+	}
 }
