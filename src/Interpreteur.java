@@ -34,11 +34,11 @@ public class Interpreteur {
 			System.out.println("interpréteur connecté");
 	}
 	
-	public boolean checkLogin(String login, String psw) throws Exception{
+	public boolean checkLogin(String mail, String psw) throws Exception{
 		
 		//creation et execution de la requete
 		System.out.println("creation et execution de la requ�te");
-		requete = "SELECT psw FROM utilisateur WHERE login = '"+login+"'";
+		requete = "SELECT psw FROM utilisateur WHERE mail = '"+mail+"'";
 		System.out.println(requete);
 		try {
 			state = connec.createStatement();
