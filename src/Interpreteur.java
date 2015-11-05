@@ -1,9 +1,8 @@
 import java.sql.*;
+import java.util.Iterator;
 import java.util.Vector;
 
-import Data.Company;
-import Data.Sub;
-import Data.User;
+import Data.*;
 
 public class Interpreteur {
 
@@ -168,6 +167,51 @@ public class Interpreteur {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Vector<Folder> getUserFolder(int refUser) {
+
+		requete = "select * from folder,groupe where groupe.REFUSER = "+refUser+" and groupe.REFFOLDER = folder.REFFOLDER ";
+		System.out.println(requete);
+		Vector<Folder> folderList = new Vector<Folder>();
+		try {
+			state = connec.createStatement();
+			res = state.executeQuery(requete);
+		} catch (SQLException e) {
+			System.out.println("probleme requete");
+			return null;
+		}
+
+		//parcours des donn�es retourn�es
+		System.out.println("parcours des donn�es retourn�es");
+		try {
+			while (res.next()) {
+				Folder tmp = new Folder();
+				tmp.setRefFolder(res.getInt(1));
+				tmp.setFolderName(res.getString(2));
+				folderList.add(tmp);
+			}
+			
+			for (int i=0;i<folderList.size();i++){
+				int weight = 0;
+				int number =0;
+				requete = "select filesize from fichier where REFFOLDER ="+folderList.get(i).getRefFolder();
+				state = connec.createStatement();
+				res = state.executeQuery(requete);
+				while (res.next()) {
+					number++;
+					weight+=res.getFloat(1);
+				}
+				folderList.get(i).setFolderComponentsNumber(number);
+				folderList.get(i).setFolderWeight(weight);
+			}
+			
+		} catch (SQLException e) {
+			arret(e.getMessage());
+		}
+		
+		
+		return folderList;
 	}
 
 }
