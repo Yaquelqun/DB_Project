@@ -6,8 +6,8 @@ public class LoginIHM extends JPanel implements ActionListener {
 
 	private Client client;
 	private JButton connectButton, signInButton;
-	private JTextField loginEnter, pswEnter;
-	private String login, psw;
+	private JTextField mailEnter, pswEnter;
+	private String mail, psw;
 	Dimension fenSize = new Dimension(300,200);
 	
 	public LoginIHM(Client client){
@@ -15,8 +15,8 @@ public class LoginIHM extends JPanel implements ActionListener {
 		this.client.setPreferredSize(fenSize);
 		this.setPreferredSize(fenSize);
 //TODO ajouter une image au login
-		loginEnter = new JTextField("Votre login",20);
-		this.add(loginEnter);
+		mailEnter = new JTextField("Votre mail",20);
+		this.add(mailEnter);
 //TODO mettre le psw en caché
 		pswEnter = new JTextField("Votre mot de passe",20);
 		this.add(pswEnter);
@@ -33,12 +33,14 @@ public class LoginIHM extends JPanel implements ActionListener {
 		Object s = evnt.getSource();
 		if(s == connectButton){
 			//enregistrement du login/psw
-			login = loginEnter.getText();
+			mail = mailEnter.getText();
 			psw = pswEnter.getText();
-			System.out.println(login + " " + psw + " connexion..."); 
+			System.out.println(mail + " " + psw + " connexion..."); 
 //TODO comparer à la base de données et connexion done ou pas
 			try {
-				client.sqlback.checkLogin(login, psw);
+				client.sqlback.checkLogin(mail, psw);
+				//TODO enregistrer le client connecté
+				client.pageMain();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

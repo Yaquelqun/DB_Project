@@ -17,7 +17,7 @@ public class BrowsingFoldersIHM extends JPanel implements ActionListener {
 	private JTextArea infoArea;
 	private JList<String> mdpList;
 	private String mdpChoice;
-	Dimension fenSize = new Dimension(800,600), infoSize = new Dimension(200,300), manageSize = new Dimension(200, 600), browseSize = new Dimension(600, 600);
+	Dimension fenSize = new Dimension(900,600), infoSize = new Dimension(200,300), manageSize = new Dimension(200, 600), browseSize = new Dimension(600, 600);
 	
 	public BrowsingFoldersIHM(Client client){
 		this.client = client;
@@ -36,13 +36,13 @@ public class BrowsingFoldersIHM extends JPanel implements ActionListener {
 	private void creaPanelManagement() {
 		// TODO Auto-generated method stub
 		panelManagement.setPreferredSize(manageSize);
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		panelInfos = new JPanel();
 		panelInfos.setPreferredSize(infoSize);
 		infoArea = new JTextArea();
 		infoArea.setPreferredSize(infoSize);
 		panelInfos.add(infoArea);
-		this.add(panelInfos);
+		panelManagement.add(panelInfos);
 		
 		panelButton = new JPanel();
 		panelButton.setPreferredSize(infoSize);
@@ -59,7 +59,7 @@ public class BrowsingFoldersIHM extends JPanel implements ActionListener {
 		suppButton = new JButton("Supprimer le Dossier");
 		suppButton.addActionListener(this);
 		panelButton.add(suppButton);
-		this.add(panelButton);
+		panelManagement.add(panelButton);
 	}
 
 	private void creaPanelBrowse() {
