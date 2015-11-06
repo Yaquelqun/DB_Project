@@ -87,14 +87,23 @@ public class BrowsingFoldersIHM extends JPanel implements ActionListener, ListSe
 		
 	}
 
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent evnt) {
+		Object s = evnt.getSource();
+		if(s == newButton){
+			client.pageAddFolder();
+		}
+		if(s == shareButton){
+			folderSelected = folderNamesList.getSelectedValue();
+			int indexChoice = folderNamesList.getSelectedIndex();
+			Folder tmpFolder = new Folder();
+			tmpFolder = folderList.get(indexChoice);
+			client.pageShareFolder(tmpFolder.getRefFolder());
+		}
 		
 	}
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
 		folderSelected = folderNamesList.getSelectedValue();
 		//TODO afficher les infos du dossier
 	}
