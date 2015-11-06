@@ -93,11 +93,27 @@ public class BrowsingFoldersIHM extends JPanel implements ActionListener, ListSe
 			client.pageAddFolder();
 		}
 		if(s == shareButton){
+			if(folderNamesList.getSelectedValue()!=null){
 			folderSelected = folderNamesList.getSelectedValue();
 			int indexChoice = folderNamesList.getSelectedIndex();
 			Folder tmpFolder = new Folder();
 			tmpFolder = folderList.get(indexChoice);
 			client.pageShareFolder(tmpFolder.getRefFolder());
+			}
+			else client.infoBox("veuillez sélectionner un Dossier a partager", "erreur");
+		}
+		if (s==suppButton){
+			if(folderNamesList.getSelectedValue()!=null){
+				folderSelected = folderNamesList.getSelectedValue();
+				int indexChoice = folderNamesList.getSelectedIndex();
+				Folder tmpFolder = new Folder();
+				tmpFolder = folderList.get(indexChoice);
+				client.sqlback.removeFolder(tmpFolder.getRefFolder(), client.currentUser.getMail());
+				client.infoBox("Le dossier a bien été supprimé", "youpi");
+				client.pageMain();
+				
+				}
+				else client.infoBox("veuillez sélectionner un Dossier a supprimer", "erreur");
 		}
 		
 	}
