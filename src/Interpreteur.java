@@ -311,7 +311,7 @@ public class Interpreteur {
 		}		
 		return UserNumber;
 	}
-	
+
 	public int getFolderNb() {
 
 		int FolderNumber =0;
@@ -337,7 +337,7 @@ public class Interpreteur {
 		}		
 		return FolderNumber;
 	}
-	
+
 	public void addFolder(int refUser, String folderName){
 		int refFolder = getFolderNb()+1;
 		String requete = "INSERT INTO folder VALUES ("+refFolder+",'"+folderName+"')";
@@ -357,22 +357,12 @@ public class Interpreteur {
 			e.printStackTrace();
 		}
 	}
-	
-	public void removeFolder(int refFolder, int refUser){
-		String requete = "DELETE FROM Groupe where refFolder = "+refFolder+"and refUser ="+refUser;
-		try {
-			state= connec.createStatement();
-			int nbMaj = state.executeUpdate(requete);
-			System.out.println("nb mise a jour = "+nbMaj);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void shareFolder(int refFolder, String mail){
+
+	public void removeFolder(int refFolder, String mail){
 		User shared = new User();
 		shared = getUser(mail);
-		String requete = "INSERT INTO groupe VALUES("+shared.getRefUser()+","+refFolder+")";
+		if (shared != null){
+		String requete = "DELETE FROM Groupe where refFolder = "+refFolder+"and refUser ="+shared.getRefUser();
 		try {
 			state= connec.createStatement();
 			int nbMaj = state.executeUpdate(requete);
@@ -380,5 +370,26 @@ public class Interpreteur {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		}
+	}
+
+	public int shareFolder(int refFolder, String mail){
+		User shared = new User();
+		shared = getUser(mail);
+		if (shared == null){
+System.out.println("utilisateur inexistant...");
+return 0;
+		}
+		else{
+			String requete = "INSERT INTO groupe VALUES("+shared.getRefUser()+","+refFolder+")";
+			try {
+				state= connec.createStatement();
+				int nbMaj = state.executeUpdate(requete);
+				System.out.println("nb mise a jour = "+nbMaj);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return 1;
 	}
 }

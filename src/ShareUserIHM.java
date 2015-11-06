@@ -28,7 +28,9 @@ public class ShareUserIHM extends JPanel implements ActionListener {
 		Object s = evnt.getSource();
 		if(s == OKButton){
 			//enregistrement des données
-			client.sqlback.shareFolder(refFolder, mailUserEnter.getText());
+			if(client.sqlback.shareFolder(refFolder, mailUserEnter.getText()) == 0){
+				client.infoBox("Cet utilisateur est inexistant", "erreur");
+			}
 			client.pageMain();
 		}
 	}
