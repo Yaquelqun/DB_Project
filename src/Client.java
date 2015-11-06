@@ -4,6 +4,7 @@ import java.io.* ;
 import Data.Sub;
 import Data.User;
 import Data.Company;
+import Data.Folder;
 
 public class Client extends JFrame  {
 
@@ -52,6 +53,18 @@ public class Client extends JFrame  {
 	public void pageMain(){
 		BrowsingFoldersIHM foldPage = new BrowsingFoldersIHM(this);
 		setContentPane(foldPage);
+		pack();
+	}
+	
+	public void pageAddFolder(){
+		AjoutFolderIHM addFoldPage = new AjoutFolderIHM(this);
+		setContentPane(addFoldPage);
+		pack();
+	}
+	
+	public void pageShareFolder(int refFolder){
+		ShareUserIHM shareUserPage = new ShareUserIHM(this, refFolder);
+		setContentPane(shareUserPage);
 		pack();
 	}
 	
